@@ -12,22 +12,18 @@
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/SUVersionDisplayProtocol.h>
 #import <Sparkle/SPUStatusCompletionResults.h>
+#import <Sparkle/SPUStandardUserDriver.h>
 
 @protocol SUUpdateAlertDelegate;
 
 @class SUAppcastItem, SPUDownloadData, SUHost;
-@interface SUUpdateAlert : NSWindowController
+@interface SUUpdateAlert : SPUStandardUpdateController
 
 @property (nonatomic, weak, readonly) id <SUVersionDisplay> versionDisplayer;
 
 - (instancetype)initWithAppcastItem:(SUAppcastItem *)item alreadyDownloaded:(BOOL)alreadyDownloaded host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer completionBlock:(void (^)(SPUUpdateAlertChoice))block;
-
 - (instancetype)initWithAppcastItem:(SUAppcastItem *)item host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer resumableCompletionBlock:(void (^)(SPUInstallUpdateStatus))block;
-
 - (instancetype)initWithAppcastItem:(SUAppcastItem *)item host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer informationalCompletionBlock:(void (^)(SPUInformationalUpdateAlertChoice))block;
-
-- (void)showUpdateReleaseNotesWithDownloadData:(SPUDownloadData *)downloadData;
-- (void)showReleaseNotesFailedToDownload;
 
 - (IBAction)installUpdate:sender;
 - (IBAction)skipThisVersion:sender;

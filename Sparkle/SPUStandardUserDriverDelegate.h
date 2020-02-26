@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Sparkle/SUExport.h>
+#import <Sparkle/SUHost.h>
 
 @protocol SUVersionDisplay;
 
@@ -17,6 +18,10 @@
  This includes methods related to UI interactions
  */
 SU_EXPORT @protocol SPUStandardUserDriverDelegate <NSObject>
+
+- (nonnull SPUStandardUpdateController*)standardUserDriverMakeAlertWithAppcastItem:(SUAppcastItem *_Nonnull)item alreadyDownloaded:(BOOL)alreadyDownloaded host:(SUHost *_Nonnull)aHost versionDisplayer:(id <SUVersionDisplay>_Nonnull)aVersionDisplayer completionBlock:(void (^_Nonnull)(SPUUpdateAlertChoice))block;
+- (nonnull SPUStandardUpdateController*)standardUserDriverMakeAlertWithAppcastItem:(SUAppcastItem *_Nonnull)item host:(SUHost *_Nonnull)aHost versionDisplayer:(id <SUVersionDisplay>_Nonnull)aVersionDisplayer resumableCompletionBlock:(void (^_Nonnull)(SPUInstallUpdateStatus))block;
+- (nonnull SPUStandardUpdateController*)standardUserDriverMakeAlertWithAppcastItem:(SUAppcastItem *_Nonnull)item host:(SUHost *_Nonnull)aHost versionDisplayer:(id <SUVersionDisplay>_Nonnull)aVersionDisplayer informationalCompletionBlock:(void (^_Nonnull)(SPUInformationalUpdateAlertChoice))block;
 
 @optional
 
@@ -38,5 +43,6 @@ SU_EXPORT @protocol SPUStandardUserDriverDelegate <NSObject>
  the standard version formatter will be used.
  */
 - (_Nullable id <SUVersionDisplay>)standardUserDriverRequestsVersionDisplayer;
+
 
 @end

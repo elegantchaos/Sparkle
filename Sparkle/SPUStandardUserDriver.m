@@ -27,7 +27,7 @@
 @property (nonatomic, weak, nullable, readonly) id <SPUStandardUserDriverDelegate> delegate;
 
 @property (nonatomic) SUStatusController *checkingController;
-@property (nonatomic) SUUpdateAlert *activeUpdateAlert;
+@property (nonatomic) SPUStandardUpdateController *activeUpdateAlert;
 @property (nonatomic) SUStatusController *statusController;
 
 @end
@@ -117,7 +117,35 @@
 
 #pragma mark Update Found
 
-- (void)showUpdateFoundWithAlertHandler:(SUUpdateAlert *(^)(SPUStandardUserDriver *, SUHost *, id<SUVersionDisplay>))alertHandler
+
+- (SPUStandardUpdateController*)makeAlertWithAppcastItem:(SUAppcastItem *)item alreadyDownloaded:(BOOL)alreadyDownloaded host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer completionBlock:(void (^)(SPUUpdateAlertChoice))block
+{
+    if ([self.delegate respondsToSelector:@selector(standardUserDriverMakeAlertWithAppcastItem:alreadyDownloaded:host:versionDisplayer:completionBlock:)]) {
+        return [self.delegate standardUserDriverMakeAlertWithAppcastItem:item alreadyDownloaded:alreadyDownloaded host:aHost versionDisplayer:aVersionDisplayer completionBlock:block];
+    }
+    
+    return [[SUUpdateAlert alloc] initWithAppcastItem:item alreadyDownloaded:alreadyDownloaded host:aHost versionDisplayer:aVersionDisplayer completionBlock:block];
+}
+    
+- (SPUStandardUpdateController*)makeAlertWithAppcastItem:(SUAppcastItem *)item host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer resumableCompletionBlock:(void (^)(SPUInstallUpdateStatus))block
+{
+    if ([self.delegate respondsToSelector:@selector(standardUserDriverMakeAlertWithAppcastItem:host:versionDisplayer:resumableCompletionBlock:)]) {
+        return [self.delegate standardUserDriverMakeAlertWithAppcastItem:item host:aHost versionDisplayer:aVersionDisplayer resumableCompletionBlock:block];
+    }
+
+    return [[SUUpdateAlert alloc] initWithAppcastItem:item host:aHost versionDisplayer:aVersionDisplayer resumableCompletionBlock:block];
+}
+
+- (SPUStandardUpdateController*)makeAlertWithAppcastItem:(SUAppcastItem *)item host:(SUHost *)aHost versionDisplayer:(id <SUVersionDisplay>)aVersionDisplayer informationalCompletionBlock:(void (^)(SPUInformationalUpdateAlertChoice))block
+{
+    if ([self.delegate respondsToSelector:@selector(standardUserDriverMakeAlertWithAppcastItem:host:versionDisplayer:informationalCompletionBlock:)]) {
+        return [self.delegate standardUserDriverMakeAlertWithAppcastItem:item host:aHost versionDisplayer:aVersionDisplayer informationalCompletionBlock:block];
+    }
+
+    return [[SUUpdateAlert alloc] initWithAppcastItem:item host:aHost versionDisplayer:aVersionDisplayer informationalCompletionBlock:block];
+}
+
+- (void)showUpdateFoundWithAlertHandler:(SPUStandardUpdateController *(^)(SPUStandardUserDriver *, SUHost *, id<SUVersionDisplay>))alertHandler
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         id <SUVersionDisplay> versionDisplayer = nil;
@@ -135,8 +163,8 @@
 
 - (void)showUpdateFoundWithAppcastItem:(SUAppcastItem *)appcastItem userInitiated:(BOOL)__unused userInitiated reply:(void (^)(SPUUpdateAlertChoice))reply
 {
-    [self showUpdateFoundWithAlertHandler:^SUUpdateAlert *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
-        return [[SUUpdateAlert alloc] initWithAppcastItem:appcastItem alreadyDownloaded:NO host:host versionDisplayer:versionDisplayer completionBlock:^(SPUUpdateAlertChoice choice) {
+    [self showUpdateFoundWithAlertHandler:^SPUStandardUpdateController *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
+        return [self makeAlertWithAppcastItem:appcastItem alreadyDownloaded:NO host:host versionDisplayer:versionDisplayer completionBlock:^(SPUUpdateAlertChoice choice) {
             reply(choice);
             weakSelf.activeUpdateAlert = nil;
         }];
@@ -145,8 +173,8 @@
 
 - (void)showDownloadedUpdateFoundWithAppcastItem:(SUAppcastItem *)appcastItem userInitiated:(BOOL)__unused userInitiated reply:(void (^)(SPUUpdateAlertChoice))reply
 {
-    [self showUpdateFoundWithAlertHandler:^SUUpdateAlert *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
-        return [[SUUpdateAlert alloc] initWithAppcastItem:appcastItem alreadyDownloaded:YES host:host versionDisplayer:versionDisplayer completionBlock:^(SPUUpdateAlertChoice choice) {
+    [self showUpdateFoundWithAlertHandler:^SPUStandardUpdateController *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
+        return [self makeAlertWithAppcastItem:appcastItem alreadyDownloaded:YES host:host versionDisplayer:versionDisplayer completionBlock:^(SPUUpdateAlertChoice choice) {
             reply(choice);
             weakSelf.activeUpdateAlert = nil;
         }];
@@ -155,8 +183,8 @@
 
 - (void)showResumableUpdateFoundWithAppcastItem:(SUAppcastItem *)appcastItem userInitiated:(BOOL)__unused userInitiated reply:(void (^)(SPUInstallUpdateStatus))reply
 {
-    [self showUpdateFoundWithAlertHandler:^SUUpdateAlert *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
-        return [[SUUpdateAlert alloc] initWithAppcastItem:appcastItem host:host versionDisplayer:versionDisplayer resumableCompletionBlock:^(SPUInstallUpdateStatus choice) {
+    [self showUpdateFoundWithAlertHandler:^SPUStandardUpdateController *(SPUStandardUserDriver *weakSelf, SUHost *host, id<SUVersionDisplay> versionDisplayer) {
+        return [self makeAlertWithAppcastItem:appcastItem host:host versionDisplayer:versionDisplayer resumableCompletionBlock:^(SPUInstallUpdateStatus choice) {
             reply(choice);
             weakSelf.activeUpdateAlert = nil;
         }];

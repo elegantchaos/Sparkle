@@ -14,6 +14,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SPUStandardUserDriverDelegate;
+@protocol SUVersionDisplay;
+@class SUHost;
+
+SU_EXPORT @protocol SPUStandardUpdateAlert
+- (void)showUpdateReleaseNotesWithDownloadData:(SPUDownloadData *)downloadData;
+- (void)showReleaseNotesFailedToDownload;
+@end
+
+SU_EXPORT typedef NSWindowController<SPUStandardUpdateAlert> SPUStandardUpdateController;
 
 /*!
  Sparkle's standard built-in user driver for updater interactions
