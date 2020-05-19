@@ -3883,10 +3883,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB37F1D31D1EA005D534A /* ConfigInstallerConnectionDebug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Debug;
 		};
@@ -3894,10 +3891,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB37E1D31D1EA005D534A /* ConfigInstallerConnection.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Coverage;
 		};
@@ -3905,10 +3899,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB37E1D31D1EA005D534A /* ConfigInstallerConnection.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Release;
 		};
@@ -3916,10 +3907,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB3A51D3338C8005D534A /* ConfigInstallerStatusDebug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Debug;
 		};
@@ -3927,10 +3915,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB3A41D3338C8005D534A /* ConfigInstallerStatus.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Coverage;
 		};
@@ -3938,10 +3923,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BB3A41D3338C8005D534A /* ConfigInstallerStatus.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				CODE_SIGN_IDENTITY = "-";
 			};
 			name = Release;
 		};
@@ -3970,11 +3952,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 72F94ED51CC3441A002DEE68 /* ConfigInstallerLauncherDebug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = InstallerLauncher/Info.plist;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -3982,11 +3961,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 72F94ED51CC3441A002DEE68 /* ConfigInstallerLauncherDebug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = InstallerLauncher/Info.plist;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Coverage;
 		};
@@ -3994,11 +3970,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 726E07C11CAF1E79001A286B /* ConfigInstallerLauncher.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = InstallerLauncher/Info.plist;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
