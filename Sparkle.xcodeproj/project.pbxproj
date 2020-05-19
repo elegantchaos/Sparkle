@@ -3860,7 +3860,6 @@
 			baseConfigurationReference = 721C24571CB754E8005440CB /* ConfigInstallerProgress.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Debug;
 		};
@@ -3869,7 +3868,6 @@
 			baseConfigurationReference = 721C24571CB754E8005440CB /* ConfigInstallerProgress.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Coverage;
 		};
@@ -3878,7 +3876,6 @@
 			baseConfigurationReference = 721C24571CB754E8005440CB /* ConfigInstallerProgress.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Release;
 		};
@@ -4078,7 +4075,6 @@
 			baseConfigurationReference = FA1941CE0D94A70100DD942E /* ConfigRelaunch.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Debug;
 		};
@@ -4087,7 +4083,6 @@
 			baseConfigurationReference = FA1941CE0D94A70100DD942E /* ConfigRelaunch.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Coverage;
 		};
@@ -4096,7 +4091,6 @@
 			baseConfigurationReference = FA1941CE0D94A70100DD942E /* ConfigRelaunch.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				ENABLE_HARDENED_RUNTIME = YES;
 			};
 			name = Release;
 		};
